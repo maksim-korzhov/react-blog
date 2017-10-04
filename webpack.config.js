@@ -7,8 +7,11 @@ module.exports = {
         index: './src/index.js',
     },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: '[name].bundle.js'
+        //path: path.resolve(__dirname, "dist"),
+        //filename: '[name].bundle.js'
+        path: path.resolve(__dirname),
+        publicPath: "/",
+        filename: "bundle.js"
     },
     module: {
         rules: [
@@ -16,8 +19,10 @@ module.exports = {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     use: ["css-loader", "sass-loader"],
-                    publicPath: __dirname + '/dist/',
-                    filename: "[name].[ext]"
+                    //publicPath: __dirname + '/dist/',
+                    //filename: "[name].[ext]"
+                    publicPath: "/dist/",
+                    filename: "bundle.[ext]"
                 })
             },
             {
@@ -29,7 +34,8 @@ module.exports = {
     },
     // Настройки сервера разработки
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        //contentBase: path.join(__dirname, "dist"),
+        contentBase: "/dist",
         compress: true, // gzip all files
         //port: 9000,
         stats: 'errors-only', // не показывать весь лог, только ошибки,
