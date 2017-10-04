@@ -1,10 +1,24 @@
-import React from "react";
+import  React from "react";
 import ReactDOM from "react-dom";
-import App from "./Components/app";
+import {Provider} from "react-redux";
+import {applyMiddleware, createStore} from "redux";
+import {BrowserRouter, Route} from "react-router-dom";
+import promise from "redux-promise";
+
+import reducers from "./reducers";
+import PostsIndex from "./components/posts_index";
 
 const scss = require("../style/style.scss");
 
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
 ReactDOM.render(
-    <App />,
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <BrowserRouter>
+            <div>
+                <Route path="/" component={PostsIndex} />
+            </div>
+        </BrowserRouter>
+    </Provider>,
     document.getElementById("root")
 );

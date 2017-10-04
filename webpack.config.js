@@ -33,7 +33,8 @@ module.exports = {
         compress: true, // gzip all files
         //port: 9000,
         stats: 'errors-only', // не показывать весь лог, только ошибки,
-        open: true // Всегда открывать в новом окне
+        open: true, // Всегда открывать в новом окне
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
